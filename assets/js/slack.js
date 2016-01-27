@@ -136,7 +136,7 @@ window.onload = function(apiKey, photoset) {
     // Render images in the DOM and add custom data-attributes so we can
     // keep track of previous and next images for the lightbox functionality
     function render(id, title, imgUrl, height, width, prev, next) {
-        var imgContainer = "<a id='" + id + "' class='thumb col-md-3' data-title='" + title + "'' data-previous='" + prev + "' data-next='"+ next + "' style='background-image: url("+ imgUrl +"); background-repeat: no-repeat; background-color: #000; width:" + width + "px; height:" + height + "px;'></a>";
+        var imgContainer = "<div id='" + id + "' class='thumb col-md-3' data-title='" + title + "' data-previous='" + prev + "' data-next='"+ next + "' style='background-repeat: no-repeat; position: relative; max-width:" + width + "px; width: 100%; height:" + height + "px;'><img src='" + imgUrl + "'/></div>";
         document.getElementById("container").innerHTML += imgContainer;
     }
 
@@ -146,7 +146,7 @@ window.onload = function(apiKey, photoset) {
     // up memory
     function handleSelect(event) {
         if (event.target !== event.currentTarget) {
-            startLightBox(event.target.id);
+            startLightBox(event.target.parentElement.id);
         }
 
         // Prevent the event from bubbling back up the DOM
@@ -237,33 +237,6 @@ window.onload = function(apiKey, photoset) {
            stopPropagation(event);
         });
     }
-
-
-    // Makes lightbox sticky so it stays in the middle whilst scrolling
-    function stickyLightbox() {
-        var lightBox = document.getElementById("lightBox");
-
-
-
-        // Makes flexbox container sticky so we can click and close lightbox
-        // even if scrolling
-        var lightBoxContainer = document.getElementById("lightBoxContainer");
-
-    }
-
-    function getAbsoluteOffsetFromBody( el ){
-    // finds the offset of el from the body or html element
-        var _x = 0;
-        var _y = 0;
-        while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) )
-        {
-            _x += el.offsetLeft - el.scrollLeft + el.clientLeft;
-            _y += el.offsetTop - el.scrollTop + el.clientTop;
-            el = el.offsetParent;
-        }
-        return { top: _y, left: _x };
-    }
-
 
 
     // Helper function to add keyboard shortcuts to lightbox for previous, next, and close

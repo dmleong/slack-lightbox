@@ -23,15 +23,16 @@ body {
   margin-bottom: 40px;
 }
 
-.col-3-md {
+.col-md-3 {
   width: 33%;
   height: auto;
   margin-top: 10px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  min-height: 300px;
-  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 0 15px;
 }
 
 #lightBoxBg{
@@ -65,6 +66,7 @@ body {
     width: 99%;
     height: 100%;
     display: none;
+    z-index: 2;
 }
 
 .arrow-right {
